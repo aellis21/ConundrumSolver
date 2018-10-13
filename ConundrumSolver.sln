@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConundrumSolver", "ConsoleApplication5\ConundrumSolver.csproj", "{6AD1C479-B74E-4C07-8625-5BA2CC42DD40}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConundrumSolver", "ConundrumSolver\ConundrumSolver.csproj", "{6AD1C479-B74E-4C07-8625-5BA2CC42DD40}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

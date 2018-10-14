@@ -7,52 +7,31 @@ namespace ConundrumSolver
 {
     public class WordFinder
     {
-        public List<KeyValuePair<string, string>> WordDictionary { get; set; }
+        public Dictionary<string, string> WordDictionary { get; set; }
 
-
-        //static void Main(string[] args)
-        //{
-        //    while (true)
-        //    {
-        //        SolveConundrum();
-        //    }
-        //}
-
-        public void SolveConundrum()
+        public void SolveConundrum(string input)
         {
-            //Console.Write("input: ");
-
-            var input = Console.ReadLine();
-            input.Replace(" ", string.Empty);
+            input.Replace(" ", string.Empty).ToLowerInvariant();
             List<char> letters = new List<char>();
-            letters.AddRange(input.ToLowerInvariant());
+            letters.AddRange(input);
 
-            List<string> wordList = new List<string>();
-            wordList = GetInitialList(letters);
-            wordList = FindWords(letters, wordList);
+            GetInitialList(letters);
+            FindWords(letters);
 
-            wordList.Sort();
-            wordList = wordList.Distinct().OrderBy(w => w.Length).ToList();
-
-            foreach (var word in wordList)
-            {
-                Console.WriteLine(word);
-            }
-
-            //Console.WriteLine("--------");
+            WordDictionary = (Dictionary<string, string>) WordDictionary.OrderBy(w => w.Key).OrderBy(w => w.Key.Length);
         }
 
-        public List<string> FindWords(List<char> letters, List<string> words)
+        public void FindWords(List<char> letters)
         {
-            var result = new List<string>();
+            var result = new Dictionary<string, string>();
             var tempLetters = new List<char>();
             bool breakWord = false;
-            foreach (var word in words)
+            foreach (var word in WordDictionary)
             {
                 breakWord = false;
                 tempLetters.Clear();
                 tempLetters.AddRange(letters);
-                foreach (var letter in word)
+                foreach (var letter in word.Key)
                 {
                     if (tempLetters.Contains(letter))
                     {
@@ -62,19 +41,20 @@ namespace ConundrumSolver
                     breakWord = true;
                     break;
                 }
-                if (!breakWord && word.Length > 2)
+                if (!breakWord && word.Key.Length > 2)
                 {
-                    result.Add(word);
+                    result.Add(word.Key, word.Value);
                 }
             }
-            return result;
+            WordDictionary = result;
         }
 
-        public List<string> GetInitialList(List<char> letters)
+        public void GetInitialList(List<char> letters)
         {
-            List<string> result = new List<string>();
+            var result = new Dictionary<string, string>();
             string line;
             string word;
+            string definition;
             try
             {
                 StreamReader sr = new StreamReader(@"OxfordEnglishDictionary.txt");
@@ -87,8 +67,16 @@ namespace ConundrumSolver
                         continue;
                     }
                     word = line.Split(' ').FirstOrDefault().ToLowerInvariant();
-                    if (result.Contains(word) || word.ToCharArray().FirstOrDefault() == '-' || word.ToCharArray().LastOrDefault() == '-')
+                    definition = line.Remove(0, word.Length);
+                    var repeatWord = result.Any(d => d.Key == word);
+                    if (repeatWord || word.ToCharArray().FirstOrDefault() == '-' || word.ToCharArray().LastOrDefault() == '-')
                     {
+                        if (repeatWord)
+                        {
+                            definition = $"{result.FirstOrDefault(d => d.Key == word).Value}{Environment.NewLine}{Environment.NewLine}{definition}";
+                            WordDictionary.Remove(word);
+                            WordDictionary.Add(word, definition);
+                        }
                         line = sr.ReadLine();
                         continue;
                     }
@@ -98,7 +86,7 @@ namespace ConundrumSolver
                     }
                     if (letters.Contains(word.First()) && letters.Count >= word.Length)
                     {
-                        result.Add(word);
+                        WordDictionary.Add(word, definition);
                     }
                     line = sr.ReadLine();
                 }
@@ -110,7 +98,6 @@ namespace ConundrumSolver
                 Console.ReadKey();
                 throw;
             }
-            return result;
         }
     }
 }

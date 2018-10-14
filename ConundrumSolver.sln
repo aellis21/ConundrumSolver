@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConundrumSolver", "ConundrumSolver\ConundrumSolver.csproj", "{6AD1C479-B74E-4C07-8625-5BA2CC42DD40}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp", "ConundrumSolver\ConsoleApp.csproj", "{6AD1C479-B74E-4C07-8625-5BA2CC42DD40}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConundrumSolverApp", "ConundrumSolverApp\ConundrumSolverApp.csproj", "{011C0447-8B42-43ED-877B-234F92A70E4D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConundrumSolver", "ConundrumSolverApp\ConundrumSolver.csproj", "{011C0447-8B42-43ED-877B-234F92A70E4D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace Logic
+namespace ConundrumSolver
 {
     public class WordFinder
     {
-
+        public List<KeyValuePair<string, string>> WordDictionary { get; set; }
 
 
         //static void Main(string[] args)

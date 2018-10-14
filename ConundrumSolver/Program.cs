@@ -5,22 +5,19 @@ using System.Linq;
 
 namespace Logic
 {
-    public class WordFinder
+    class Program
     {
-
-
-
-        //static void Main(string[] args)
-        //{
-        //    while (true)
-        //    {
-        //        SolveConundrum();
-        //    }
-        //}
-
-        public void SolveConundrum()
+        static void Main(string[] args)
         {
-            //Console.Write("input: ");
+            while (true)
+            {
+                SolveConundrum();
+            }
+        }
+
+        static void SolveConundrum()
+        {
+            Console.Write("input: ");
 
             var input = Console.ReadLine();
             input.Replace(" ", string.Empty);
@@ -39,10 +36,10 @@ namespace Logic
                 Console.WriteLine(word);
             }
 
-            //Console.WriteLine("--------");
+            Console.WriteLine("--------");
         }
 
-        public List<string> FindWords(List<char> letters, List<string> words)
+        static List<string> FindWords(List<char> letters, List<string> words)
         {
             var result = new List<string>();
             var tempLetters = new List<char>();
@@ -70,7 +67,7 @@ namespace Logic
             return result;
         }
 
-        public List<string> GetInitialList(List<char> letters)
+        static List<string> GetInitialList(List<char> letters)
         {
             List<string> result = new List<string>();
             string line;

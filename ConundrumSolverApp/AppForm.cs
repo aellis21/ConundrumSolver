@@ -31,5 +31,10 @@ namespace ApplicationForm
                 listSolvedWords.Items.Add(word.Key);
             }
         }
+
+        private void listSolvedWords_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txtDefinitions.Text = wordFinder.WordDictionary.FirstOrDefault(w => w.Key.ToLowerInvariant() == listSolvedWords.Text.ToLowerInvariant()).Value;
+        }
     }
 }

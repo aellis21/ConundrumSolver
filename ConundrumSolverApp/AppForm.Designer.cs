@@ -33,7 +33,7 @@
             this.btnSolve = new System.Windows.Forms.Button();
             this.listSolvedWords = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.Definition = new System.Windows.Forms.Label();
+            this.txtDefinitions = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -69,6 +69,7 @@
             this.listSolvedWords.Name = "listSolvedWords";
             this.listSolvedWords.Size = new System.Drawing.Size(181, 251);
             this.listSolvedWords.TabIndex = 3;
+            this.listSolvedWords.SelectedIndexChanged += new System.EventHandler(this.listSolvedWords_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -79,23 +80,21 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "Words:";
             // 
-            // Definition
+            // txtDefinitions
             // 
-            this.Definition.AutoSize = true;
-            this.Definition.Location = new System.Drawing.Point(245, 43);
-            this.Definition.MaximumSize = new System.Drawing.Size(200, 0);
-            this.Definition.MinimumSize = new System.Drawing.Size(200, 0);
-            this.Definition.Name = "Definition";
-            this.Definition.Size = new System.Drawing.Size(200, 13);
-            this.Definition.TabIndex = 5;
-            this.Definition.Text = "label3";
+            this.txtDefinitions.Location = new System.Drawing.Point(245, 43);
+            this.txtDefinitions.Multiline = true;
+            this.txtDefinitions.Name = "txtDefinitions";
+            this.txtDefinitions.Size = new System.Drawing.Size(201, 251);
+            this.txtDefinitions.TabIndex = 6;
+            this.txtDefinitions.Text = "Select a word to see its definitions";
             // 
             // AppForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(458, 306);
-            this.Controls.Add(this.Definition);
+            this.Controls.Add(this.txtDefinitions);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.listSolvedWords);
             this.Controls.Add(this.btnSolve);
@@ -115,7 +114,7 @@
         private System.Windows.Forms.Button btnSolve;
         private System.Windows.Forms.ListBox listSolvedWords;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label Definition;
+        private System.Windows.Forms.TextBox txtDefinitions;
     }
 }
 

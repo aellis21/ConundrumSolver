@@ -77,7 +77,7 @@ namespace ConundrumSolver
 
                 word = ExtractWordFromLine(line);
 
-                definition = line.Remove(0, word.Length);
+                definition = line.Remove(0, word.Length).Trim();
 
                 if (!IsValidWord(word, definition, letters))
                 {

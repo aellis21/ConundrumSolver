@@ -1,4 +1,4 @@
-﻿namespace ConundrumSolverApp
+﻿namespace ApplicationForm
 {
     partial class AppForm
     {
@@ -28,12 +28,94 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtBoxInput = new System.Windows.Forms.TextBox();
+            this.btnSolve = new System.Windows.Forms.Button();
+            this.listSolvedWords = new System.Windows.Forms.ListBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.Definition = new System.Windows.Forms.Label();
+            this.SuspendLayout();
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(34, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Input:";
+            // 
+            // txtBoxInput
+            // 
+            this.txtBoxInput.Location = new System.Drawing.Point(58, 6);
+            this.txtBoxInput.Name = "txtBoxInput";
+            this.txtBoxInput.Size = new System.Drawing.Size(100, 20);
+            this.txtBoxInput.TabIndex = 1;
+            // 
+            // btnSolve
+            // 
+            this.btnSolve.Location = new System.Drawing.Point(164, 6);
+            this.btnSolve.Name = "btnSolve";
+            this.btnSolve.Size = new System.Drawing.Size(75, 23);
+            this.btnSolve.TabIndex = 2;
+            this.btnSolve.Text = "Solve";
+            this.btnSolve.UseVisualStyleBackColor = true;
+            this.btnSolve.Click += new System.EventHandler(this.btnSolve_Click);
+            // 
+            // listSolvedWords
+            // 
+            this.listSolvedWords.FormattingEnabled = true;
+            this.listSolvedWords.Location = new System.Drawing.Point(58, 43);
+            this.listSolvedWords.Name = "listSolvedWords";
+            this.listSolvedWords.Size = new System.Drawing.Size(181, 251);
+            this.listSolvedWords.TabIndex = 3;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(11, 43);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(41, 13);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Words:";
+            // 
+            // Definition
+            // 
+            this.Definition.AutoSize = true;
+            this.Definition.Location = new System.Drawing.Point(245, 43);
+            this.Definition.MaximumSize = new System.Drawing.Size(200, 0);
+            this.Definition.MinimumSize = new System.Drawing.Size(200, 0);
+            this.Definition.Name = "Definition";
+            this.Definition.Size = new System.Drawing.Size(200, 13);
+            this.Definition.TabIndex = 5;
+            this.Definition.Text = "label3";
+            // 
+            // AppForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "Form1";
+            this.ClientSize = new System.Drawing.Size(458, 306);
+            this.Controls.Add(this.Definition);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.listSolvedWords);
+            this.Controls.Add(this.btnSolve);
+            this.Controls.Add(this.txtBoxInput);
+            this.Controls.Add(this.label1);
+            this.Name = "AppForm";
+            this.Text = "Conundrum Solver";
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
+
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtBoxInput;
+        private System.Windows.Forms.Button btnSolve;
+        private System.Windows.Forms.ListBox listSolvedWords;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label Definition;
     }
 }
 

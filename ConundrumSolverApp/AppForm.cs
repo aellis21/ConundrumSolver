@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ConundrumSolver;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,23 @@ namespace ApplicationForm
 {
     public partial class AppForm : Form
     {
+        private WordFinder wordFinder;
         public AppForm()
         {
             InitializeComponent();
+            wordFinder = new WordFinder();
+        }
+
+        private void btnSolve_Click(object sender, EventArgs e)
+        {
+            wordFinder.SolveConundrum(txtBoxInput.Text);
+
+            listSolvedWords.Items.Clear();
+
+            foreach (var word in wordFinder.WordDictionary)
+            {
+                listSolvedWords.Items.Add(word.Key);
+            }
         }
     }
 }

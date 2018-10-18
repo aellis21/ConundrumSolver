@@ -11,6 +11,7 @@ namespace ConundrumSolver
 
         public void SolveConundrum(string input)
         {
+            WordDictionary = new Dictionary<string, string>();
             input.Replace(" ", string.Empty).ToLowerInvariant();
             List<char> letters = new List<char>();
             letters.AddRange(input);
@@ -18,10 +19,20 @@ namespace ConundrumSolver
             GetInitialList(letters);
             FindWords(letters);
 
-            WordDictionary = (Dictionary<string, string>) WordDictionary.OrderBy(w => w.Key).OrderBy(w => w.Key.Length);
+            OrderDictionary();
         }
 
-        public void FindWords(List<char> letters)
+        private void OrderDictionary()
+        {
+            var tempDict = WordDictionary.OrderBy(w => w.Key).OrderBy(w => w.Key.Length);
+            WordDictionary = new Dictionary<string, string>();
+            foreach (var word in tempDict)
+            {
+                WordDictionary.Add(word.Key, word.Value);
+            }
+        }
+
+        private void FindWords(List<char> letters)
         {
             var result = new Dictionary<string, string>();
             var tempLetters = new List<char>();
@@ -49,55 +60,72 @@ namespace ConundrumSolver
             WordDictionary = result;
         }
 
-        public void GetInitialList(List<char> letters)
+        private void GetInitialList(List<char> letters)
         {
-            var result = new Dictionary<string, string>();
-            string line;
             string word;
             string definition;
-            try
+
+            StreamReader sr = new StreamReader(@"OxfordEnglishDictionary.txt");
+            string line = sr.ReadLine();
+            while (line != null)
             {
-                StreamReader sr = new StreamReader(@"OxfordEnglishDictionary.txt");
-                line = sr.ReadLine();
-                while (line != null)
+                if (string.IsNullOrWhiteSpace(line))
                 {
-                    if (string.IsNullOrWhiteSpace(line))
-                    {
-                        line = sr.ReadLine();
-                        continue;
-                    }
-                    word = line.Split(' ').FirstOrDefault().ToLowerInvariant();
-                    definition = line.Remove(0, word.Length);
-                    var repeatWord = result.Any(d => d.Key == word);
-                    if (repeatWord || word.ToCharArray().FirstOrDefault() == '-' || word.ToCharArray().LastOrDefault() == '-')
-                    {
-                        if (repeatWord)
-                        {
-                            definition = $"{result.FirstOrDefault(d => d.Key == word).Value}{Environment.NewLine}{Environment.NewLine}{definition}";
-                            WordDictionary.Remove(word);
-                            WordDictionary.Add(word, definition);
-                        }
-                        line = sr.ReadLine();
-                        continue;
-                    }
-                    while (char.IsDigit(word.ToCharArray().LastOrDefault()))
-                    {
-                        word = word.Remove(word.Length - 1);
-                    }
-                    if (letters.Contains(word.First()) && letters.Count >= word.Length)
-                    {
-                        WordDictionary.Add(word, definition);
-                    }
                     line = sr.ReadLine();
+                    continue;
                 }
-                sr.Close();
+
+                word = ExtractWordFromLine(line);
+
+                definition = line.Remove(0, word.Length);
+
+                if (!IsValidWord(word, definition, letters))
+                {
+                    line = sr.ReadLine();
+                    continue;
+                }
+
+                AddWordToDictionary(letters, word, definition);
+
+                line = sr.ReadLine();
             }
-            catch (Exception e)
+            sr.Close();
+
+        }
+
+        private void AddWordToDictionary(List<char> letters, string word, string definition)
+        {
+            if (letters.Contains(word.First()) && letters.Count >= word.Length)
             {
-                Console.WriteLine(e.ToString());
-                Console.ReadKey();
-                throw;
+                WordDictionary.Add(word, definition);
             }
+        }
+
+        private bool IsValidWord(string word, string definition, List<char> letters)
+        {
+            var repeatWord = WordDictionary.Any(d => d.Key == word);
+            if (repeatWord || word.ToCharArray().FirstOrDefault() == '-' || word.ToCharArray().LastOrDefault() == '-')
+            {
+                if (repeatWord)
+                {
+                    string tempDefinition = $"{WordDictionary.FirstOrDefault(d => d.Key == word).Value}{Environment.NewLine}{Environment.NewLine}{definition}";
+                    WordDictionary.Remove(word);
+                    AddWordToDictionary(letters, word, tempDefinition);
+                }
+                return false;
+            }
+            return true;
+        }
+
+        private string ExtractWordFromLine(string line)
+        {
+            string word = line.Split(' ').FirstOrDefault().ToLowerInvariant();
+            while (char.IsDigit(word.ToCharArray().LastOrDefault()))
+            {
+                word = word.Remove(word.Length - 1);
+            }
+
+            return word;
         }
     }
 }

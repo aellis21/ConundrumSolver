@@ -85,6 +85,7 @@
             this.txtDefinitions.Location = new System.Drawing.Point(245, 43);
             this.txtDefinitions.Multiline = true;
             this.txtDefinitions.Name = "txtDefinitions";
+            this.txtDefinitions.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtDefinitions.Size = new System.Drawing.Size(201, 251);
             this.txtDefinitions.TabIndex = 6;
             this.txtDefinitions.Text = "Select a word to see its definitions";

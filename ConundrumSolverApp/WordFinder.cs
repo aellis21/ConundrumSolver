@@ -24,7 +24,7 @@ namespace ConundrumSolver
 
         private void OrderDictionary()
         {
-            var tempDict = WordDictionary.OrderBy(w => w.Key).OrderBy(w => w.Key.Length);
+            var tempDict = WordDictionary.OrderBy(w => w.Key).OrderByDescending(w => w.Key.Length);
             WordDictionary = new Dictionary<string, string>();
             foreach (var word in tempDict)
             {
@@ -90,7 +90,6 @@ namespace ConundrumSolver
                 line = sr.ReadLine();
             }
             sr.Close();
-
         }
 
         private void AddWordToDictionary(List<char> letters, string word, string definition)

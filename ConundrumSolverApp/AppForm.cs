@@ -1,12 +1,6 @@
 ﻿using ConundrumSolver;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ApplicationForm
@@ -22,14 +16,18 @@ namespace ApplicationForm
 
         private void btnSolve_Click(object sender, EventArgs e)
         {
+            var startTime = new DateTime();
+            startTime = DateTime.Now;
+
             wordFinder.SolveConundrum(txtBoxInput.Text);
-
             listSolvedWords.Items.Clear();
-
             foreach (var word in wordFinder.WordDictionary)
             {
                 listSolvedWords.Items.Add(word.Key);
             }
+
+            var timeTaken = ((int)(DateTime.Now - startTime).TotalMilliseconds).ToString();
+            lblTimer.Text = $"{wordFinder.WordDictionary.Count} words found in {timeTaken}ms.";
         }
 
         private void listSolvedWords_SelectedIndexChanged(object sender, EventArgs e)

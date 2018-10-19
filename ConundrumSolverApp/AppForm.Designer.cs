@@ -34,6 +34,7 @@
             this.listSolvedWords = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtDefinitions = new System.Windows.Forms.TextBox();
+            this.lblTimer = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -90,11 +91,20 @@
             this.txtDefinitions.TabIndex = 6;
             this.txtDefinitions.Text = "Select a word to see its definitions";
             // 
+            // lblTimer
+            // 
+            this.lblTimer.AutoSize = true;
+            this.lblTimer.Location = new System.Drawing.Point(245, 11);
+            this.lblTimer.Name = "lblTimer";
+            this.lblTimer.Size = new System.Drawing.Size(0, 13);
+            this.lblTimer.TabIndex = 7;
+            // 
             // AppForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(458, 306);
+            this.Controls.Add(this.lblTimer);
             this.Controls.Add(this.txtDefinitions);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.listSolvedWords);
@@ -116,6 +126,7 @@
         private System.Windows.Forms.ListBox listSolvedWords;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtDefinitions;
+        private System.Windows.Forms.Label lblTimer;
     }
 }
 
